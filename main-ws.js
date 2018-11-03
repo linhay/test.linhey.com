@@ -8,6 +8,8 @@ wss.on('connection', function connection(ws, req) {
     });
     ws.send('headers: ' + JSON.stringify({
         headers: req.headers,
-        ip: ws._socket.address()
+        ip: ws._socket.remoteAddress,
+        port: ws._socket.remotePort
     }));
 });
+
