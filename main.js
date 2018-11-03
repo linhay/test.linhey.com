@@ -9,8 +9,7 @@ function beginServer() {
     // app.use(routers.routes()).use(routers.allowedMethods())
     app.use(async (ctx, next) => {
         ctx.body = {
-            headers: ctx.request.headers,
-            ips: []
+            headers: ctx.request.headers
         }
     })
 
