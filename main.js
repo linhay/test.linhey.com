@@ -10,32 +10,12 @@ function beginServer() {
     app.use(async (ctx, next) => {
         ctx.body = {
             headers: ctx.request.headers,
-            ips: getIP()
+            ips: []
         }
     })
 
     let server = app.listen(15000)
     console.log('Server is starting at port ' + server.address().port)
-}
-
-
-function getIP() {
-    var os = require('os');
-    var ifaces = os.networkInterfaces();
-    ips = []
-    Object.keys(ifaces).forEach(function (ifname) {
-        var alias = 0;
-        ifaces[ifname].forEach(function (iface) {
-            if ('IPv4' !== iface.family || iface.internal !== false) { return; }
-            if (alias >= 1) {
-                ips.push(ifname + alias + ':' + iface.address);
-            } else {
-                ips.push(ifname + ':' + iface.address);
-            }
-            ++alias;
-        });
-    });
-    return ips
 }
 
 beginServer()
